@@ -1,3 +1,16 @@
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => console.log(e))
+    const playerSelection = button.outerText;
+    console.log(playerSelection)
+})
+
+
+
 function computerPlay() {
     const tools = ['rock', 'paper', 'scissors'];
     let choice = Math.floor(Math.random()*3);
