@@ -1,15 +1,6 @@
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((button) => {
-    button.addEventListener('click', (e) => console.log(e))
-    const playerSelection = button.outerText;
-    console.log(playerSelection)
-})
-
-
 
 function computerPlay() {
     const tools = ['rock', 'paper', 'scissors'];
@@ -18,7 +9,6 @@ function computerPlay() {
 }
 
 function playOneRound(playerSelection, computerSelection) {
-
     if (computerSelection === playerSelection) {
         return "It is a tie.";
     } else if (computerSelection === "rock") {
@@ -39,38 +29,58 @@ function playOneRound(playerSelection, computerSelection) {
         } else if (playerSelection === "paper") {
             return "computer";
         }
-    } 
     }
+} 
 
-function game() {
+let playerScore = 0;
+let compScore = 0;
+let playerSelection = ''
 
-    let playerScore = 0;
-    let compScore = 0;
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Enter one of the following: Rock, Paper, Scissors.').toLowerCase();
-        console.log(`You threw ${playerSelection}`);
-        const computerSelection = computerPlay();
-        console.log(`The computer threw ${computerSelection}`)
-        let winner = playOneRound(playerSelection, computerSelection);
-        if (winner === "player") {
-            playerScore++;
-        } else if (winner === "computer") {
-            compScore++;
-        }
-        console.log(`Player: ${playerScore}    Computer: ${compScore}`)
+let click_rock = rock.addEventListener('click', () => {
+    click_rock = rock.outerText.toLowerCase();
+    playerSelection = click_rock
+    computerSelection = computerPlay();
+    let winner = playOneRound(playerSelection, computerSelection);
+    if (winner === "player") {
+        playerScore++;
+    } else if (winner === "computer") {
+        compScore++;
     }
+    console.log(`Player: ${playerScore}    Computer: ${compScore}`)
+});
+
+let click_paper = paper.addEventListener('click', () => {
+    click_paper = paper.outerText.toLowerCase();
+    playerSelection = click_paper
+    computerSelection = computerPlay();
+    let winner = playOneRound(playerSelection, computerSelection);
+    if (winner === "player") {
+        playerScore++;
+    } else if (winner === "computer") {
+        compScore++;
+    }
+    console.log(`Player: ${playerScore}    Computer: ${compScore}`)
+});
+
+let click_scissors = scissors.addEventListener('click', () => {
+    click_scissors = scissors.outerText.toLowerCase();
+    playerSelection = click_scissors
+    computerSelection = computerPlay();
+    let winner = playOneRound(playerSelection, computerSelection);
+    if (winner === "player") {
+        playerScore++;
+    } else if (winner === "computer") {
+        compScore++;
+    }
+    console.log(`Player: ${playerScore}    Computer: ${compScore}`)
+});
+function displayWinner(playerScore, compScore) {
     if (playerScore > compScore) {
         console.log("You win!");
     } else if (playerScore < compScore) {
         console.log("Computer wins!");
     } else {
-        console.log("It's a tie.")
+        console.log("It's a tie.");
     }
 }
 
-//const playerSelection = prompt('Enter one of the following: Rock, Paper, Scissors.').toLowerCase()
-//console.log(playerSelection)
-//const computerSelection = computerPlay()
-//console.log(computerSelection)
-//console.log(playOneRound(playerSelection, computerSelection))
-game()
