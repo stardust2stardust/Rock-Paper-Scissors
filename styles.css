@@ -1,0 +1,48 @@
+
+
+body, html {
+    background-color: #5b538d;
+}
+
+.card-header-title {
+    justify-content:  center;
+    font-size: 30px;
+    background-color: darkgrey;
+    border-radius: 10px;
+}
+
+.container {
+    
+
+    margin-top: 100px;
+    max-width: 50%;
+   
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    height:fit-content;
+    background-color: beige;
+    border-radius: 20px;
+
+}
+
+.scores {
+    font-size: 25px;
+    padding: 10px;
+}
+
+#finalWinner {
+    background-color: beige;
+    color: darkred;
+    text-align: center;
+}
+
+.button {
+    background-color: darkgray;
+    color: #5b538d;
+    border-radius: 10px;
+}
