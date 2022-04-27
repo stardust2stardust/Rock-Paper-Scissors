@@ -18,6 +18,7 @@ function computerPlay() {
 }
 
 function playOneRound(playerSelection, computerSelection) {
+
     if (computerSelection === playerSelection) {
         return "It is a tie.";
     } else if (computerSelection === "rock") {
@@ -39,95 +40,88 @@ function playOneRound(playerSelection, computerSelection) {
             return "computer";
         }
     }
+
+
 }
 
-function displayWinner(playerScore, compScore) {
+function clickRock() {
+    roundCount += 1
+    rounds.innerText = roundCount;
+    if (!isGameOver) {
+
+        playerSelection = rock.outerText.toLowerCase();
+        computerSelection = computerPlay();
+
+        let winner = playOneRound(playerSelection, computerSelection);
+        if (winner === 'player') {
+            playerScore++;
+            playerCount.innerText = playerScore;
+        } else {
+            compScore++;
+            compCount.innerText = compScore;
+        }
+        if (playerScore === 5 || compScore === 5) {
+            isGameOver = true;
+            gameOver();
+        }
+    }
+}
+
+function clickPaper() {
+    roundCount += 1
+    rounds.innerText = roundCount;
+    if (!isGameOver) {
+
+        playerSelection = paper.outerText.toLowerCase();
+        computerSelection = computerPlay();
+        let winner = playOneRound(playerSelection, computerSelection);
+        if (winner === 'player') {
+            playerScore++;
+            playerCount.innerText = playerScore;
+        } else {
+            compScore++;
+            compCount.innerText = compScore;
+        }
+        if (playerScore === 5 || compScore === 5) {
+            isGameOver = true;
+            gameOver();
+        }
+    }
+}
+
+function clickScissors() {
+    roundCount += 1
+    rounds.innerText = roundCount;
+    if (!isGameOver) {
+
+        playerSelection = scissors.outerText.toLowerCase();
+        computerSelection = computerPlay();
+        let winner = playOneRound(playerSelection, computerSelection);
+        if (winner === 'player') {
+            playerScore++;
+            playerCount.innerText = playerScore;
+        } else {
+            compScore++;
+            compCount.innerText = compScore;
+        }
+        if (playerScore === 5 || compScore === 5) {
+            isGameOver = true;
+            gameOver();
+        }
+    }
+}
+
+function gameOver() {
+    scissors.removeEventListener('click', clickScissors);
+    paper.removeEventListener('click', clickPaper);
+    rock.removeEventListener('click', clickRock);
     if (playerScore > compScore) {
-        console.log("You win!");
-    } else if (playerScore < compScore) {
-        console.log("Computer wins!");
+        final.innerText = "You win!";
     } else {
-        console.log("It's a tie.");
+        final.innerText = "You lose!";
     }
 }
-
-
-let click_rock = rock.addEventListener('click', () => {
-    roundCount += 1
-    rounds.innerText = roundCount;
-    if (!isGameOver) {
-        click_rock = rock.outerText.toLowerCase();
-        playerSelection = click_rock;
-        computerSelection = computerPlay();
-        let winner = playOneRound(playerSelection, computerSelection);
-        if (winner === 'player') {
-            playerScore++;
-            playerCount.innerText = playerScore;
-        } else {
-            compScore++;
-            compCount.innerText = compScore;
-        }
-
-        if (playerScore === 5 || compScore === 5) {
-            isGameOver = true;
-            if (playerScore > compScore) {
-                final.innerText = "You win!";
-            } else {
-                final.innerText = "You lose!";
-            }
-        }
-    }
-});
-
-let click_paper = paper.addEventListener('click', () => {
-    roundCount += 1
-    rounds.innerText = roundCount;
-    if (!isGameOver) {
-        click_paper = paper.outerText.toLowerCase();
-        playerSelection = click_paper
-        computerSelection = computerPlay();
-        let winner = playOneRound(playerSelection, computerSelection);
-        if (winner === 'player') {
-            playerScore++;
-            playerCount.innerText = playerScore;
-        } else {
-            compScore++;
-            compCount.innerText = compScore;
-        }
-        if (playerScore === 5 || compScore === 5) {
-            isGameOver = true;
-            if (playerScore > compScore) {
-                final.innerText = "You win!";
-            } else {
-                final.innerText = "You lose!";
-            }
-        }
-    }
-});
-
-let click_scissors = scissors.addEventListener('click', () => {
-    roundCount += 1
-    rounds.innerText = roundCount;
-    if (!isGameOver) {
-        click_scissors = scissors.outerText.toLowerCase();
-        playerSelection = click_scissors
-        computerSelection = computerPlay();
-        let winner = playOneRound(playerSelection, computerSelection);
-        if (winner === 'player') {
-            playerScore++;
-            playerCount.innerText = playerScore;
-        } else {
-            compScore++;
-            compCount.innerText = compScore;
-        }
-        if (playerScore === 5 || compScore === 5) {
-            isGameOver = true;
-            if (playerScore > compScore) {
-                final.innerText = "You win!";
-            } else {
-                final.innerText = "You lose!";
-            }
-        }
-    }
-});
+rock.addEventListener('click', clickRock);
+paper.addEventListener('click', clickPaper);
+scissors.addEventListener('click', clickScissors);
 
